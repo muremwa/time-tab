@@ -10,7 +10,7 @@ const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
 ];
-let fHate = 12;
+let fHate = 0;
 let soundOn = 1;
 
 // reset form
@@ -71,7 +71,7 @@ function updateValueOnScreen () {
 }
 
 updateValueOnScreen();
-setInterval(updateValueOnScreen, 1000 * 15);
+setInterval(updateValueOnScreen, 1000 * 60);
 
 
 // listen for ping warning
@@ -80,3 +80,12 @@ if (alarmOptionDiv) {
     alarmOptionDiv.addEventListener('change', () => soundOn = parseInt(alarmOptionDiv.value));
 }
 
+
+// change hour system
+const hrSysDiv = document.getElementById('hour-system');
+if (hrSysDiv) {
+    hrSysDiv.addEventListener('change', () => {
+        fHate = parseInt(hrSysDiv.value);
+        updateValueOnScreen()
+    });
+}
