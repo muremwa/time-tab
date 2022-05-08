@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time and date by Muremwa</title>
+  </head>
+  <body>
+    <div id="app">
+        <h2>Date: <span id="date-s"></span></h2>
+        <h2>Time: <span id="time-s"></span></h2>
+
+        <h1 id="full-s"></h1>
+        <hr>
+        <div>
+            <h3>Options</h3>
+            <form class="magic-form">
+                <div class="mgf-in">
+                    <label for="hour-system">Time Format</label>
+                    <select id="hour-system">
+                        <option value="0">24-Hour Clock system</option>
+                        <option value="12">12-Hour Clock system</option>
+                    </select>
+                </div>
+
+                <div class="mgf-in">
+                    <label for="alarm">Play Sound every hour?</label>
+                    <select id="alarm">
+                        <option value="0">Every top of the hour</option>
+                        <option value="1">Never</option>
+                    </select>
+                    <audio id="ping" src="ping.ogg"></audio>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

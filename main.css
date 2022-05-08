@@ -1,0 +1,25 @@
+html {
+    font-size: 12px;
+}
+
+* {
+    font-family: "Google Sans", "Noto Sans", "sans-serif";
+}
+
+#full-s {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.magic-form {
+    display: flex;
+}
+
+.mgf-in {
+    margin-right: 2em;
+}
+
+.mgf-in > * {
+    display: block;
+    margin-top: 0.5em;
+}
