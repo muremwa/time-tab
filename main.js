@@ -44,7 +44,7 @@ function updateValueOnTitle (timeS, dateX, dateS = null) {
     let intervalX = 0;
 
     // play sound at the top of an hour
-    timeS.search(/:00/g) > 0 && ping && soundOn? ping.play(): void 0;
+    timeS.search(/:00/g) > -1 && ping && soundOn? ping.play(): void 0;
 
     if (dateS) {
         document.title = dateS;
@@ -57,14 +57,13 @@ function updateValueOnTitle (timeS, dateX, dateS = null) {
 function updateValueOnScreen () {
     const tvalue = timeExtract();
     // is this the start of the day? Midnight?
-    const tod = tvalue.fullTime.search(/^00:00$|^12:00 PM$/g);
-    tod? console.log(tod): console.log('NOT TOD', tvalue.fullTime);
+    const tod = tvalue.fullTime.search(/^00:00$|^12:00 AM$/g);
 
     dateSec.innerText = tvalue.fullDate;
     timeSec.innerText = tvalue.fullTime;
     fullSec.innerText = tvalue.longFormDate;
 
-    updateValueOnTitle(tvalue.fullTime, tvalue.fullDate,tod > 0? tvalue.longFormDate: null);
+    updateValueOnTitle(tvalue.fullTime, tvalue.fullDate,tod > -1? tvalue.longFormDate: null);
 }
 
 updateValueOnScreen();
