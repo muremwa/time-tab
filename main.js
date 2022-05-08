@@ -68,7 +68,7 @@ const zeroPen = (num) => num < 10? `0${num.toString()}`: num.toString();
 * */
 function timeExtract () {
     // date
-    const date = new Date('2012-12-06 00:00:00');
+    const date = new Date();
     const day = days[date.getDay()];
     const month = months[date.getMonth()];
 
@@ -112,4 +112,4 @@ function updateValueOnScreen () {
 }
 
 updateValueOnScreen();
-setInterval(updateValueOnScreen, 1000 * 15);
+setInterval(updateValueOnScreen, 1000 * 60);
