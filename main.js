@@ -4,6 +4,7 @@ const dateSec = document.getElementById('date-s');
 const timeSec = document.getElementById('time-s');
 const fullSec = document.getElementById('full-s');
 const ping = document.getElementById('ping');
+const optionsForm = document.forms['options-form'];
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -11,6 +12,9 @@ const months = [
 ];
 let fHate = 12;
 let soundOn = 1;
+
+// reset form
+if (optionsForm) optionsForm.reset();
 
 // add 0 to numbers below ten: 9 -> 09, 12 -> 12, assumes all numbers are positive
 const zeroPen = (num) => num < 10? `0${num.toString()}`: num.toString();
@@ -67,5 +71,12 @@ function updateValueOnScreen () {
 }
 
 updateValueOnScreen();
-setInterval(updateValueOnScreen, 1000 * 60);
+setInterval(updateValueOnScreen, 1000 * 15);
+
+
+// listen for ping warning
+const alarmOptionDiv = document.getElementById('alarm');
+if (alarmOptionDiv) {
+    alarmOptionDiv.addEventListener('change', () => soundOn = parseInt(alarmOptionDiv.value));
+}
 
