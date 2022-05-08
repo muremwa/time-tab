@@ -16,6 +16,47 @@ let soundOn = 1;
 // reset form
 if (optionsForm) optionsForm.reset();
 
+// retrieve cookies
+const cookie = document.cookie.toString();
+const system = cookie.match(/sys=(?<system>\d{2})/);
+const sound = cookie.match(/sound=(?<sound>[0-1])/);
+
+// listen for ping warning
+const alarmOptionDiv = document.getElementById('alarm');
+
+// last saved options for ping
+if (sound) {
+    alarmOptionDiv.value = sound.groups.sound;
+    soundOn = parseInt(sound.groups.sound);
+}
+
+if (alarmOptionDiv) {
+    alarmOptionDiv.addEventListener('change', () => {
+        const svalue = parseInt(alarmOptionDiv.value);
+        soundOn = svalue;
+        document.cookie = `sound=${svalue}; SameSite=None; Secure`;
+    });
+}
+
+
+// change hour system
+const hrSysDiv = document.getElementById('hour-system');
+// last saved system
+if (system) {
+    hrSysDiv.value = system.groups.system;
+    fHate = system.groups.system;
+}
+
+if (hrSysDiv) {
+    hrSysDiv.addEventListener('change', () => {
+        const hvalue = parseInt(hrSysDiv.value);
+        fHate = hvalue;
+        document.cookie = `sys=${hvalue}; SameSite=None; Secure`;
+        updateValueOnScreen()
+    });
+}
+
+
 // add 0 to numbers below ten: 9 -> 09, 12 -> 12, assumes all numbers are positive
 const zeroPen = (num) => num < 10? `0${num.toString()}`: num.toString();
 
@@ -71,21 +112,4 @@ function updateValueOnScreen () {
 }
 
 updateValueOnScreen();
-setInterval(updateValueOnScreen, 1000 * 60);
-
-
-// listen for ping warning
-const alarmOptionDiv = document.getElementById('alarm');
-if (alarmOptionDiv) {
-    alarmOptionDiv.addEventListener('change', () => soundOn = parseInt(alarmOptionDiv.value));
-}
-
-
-// change hour system
-const hrSysDiv = document.getElementById('hour-system');
-if (hrSysDiv) {
-    hrSysDiv.addEventListener('change', () => {
-        fHate = parseInt(hrSysDiv.value);
-        updateValueOnScreen()
-    });
-}
+setInterval(updateValueOnScreen, 1000 * 15);
